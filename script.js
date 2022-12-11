@@ -1,13 +1,13 @@
 let computerScore = 0;
 let playerScore = 0;
 
-let getComputerChoice = () => {
+const getComputerChoice = () => {
     const choices = ['rock', 'paper', 'scissors'];
     let choice = choices[Math.round(Math.random()*choices.length)];
     return choice;
 }
 
-let playRound = (playerSelection, computerSelection) => {
+const playRound = (playerSelection, computerSelection) => {
     if (playerSelection === computerSelection) {
         return 'draw';
     } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
@@ -34,7 +34,7 @@ let playRound = (playerSelection, computerSelection) => {
 
 }
 
-let game = () => {
+const game = () => {
     for (let i = 0; i < 5; i++) {
         let computerSelection = getComputerChoice();
         let playerSelection = prompt('rock, paper or scissors ?')
@@ -54,4 +54,3 @@ let game = () => {
 }
 
 game();
-
