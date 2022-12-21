@@ -3,54 +3,57 @@ let playerScore = 0;
 
 const getComputerChoice = () => {
     const choices = ['rock', 'paper', 'scissors'];
-    let choice = choices[Math.round(Math.random()*choices.length)];
+    let choice = choices[Math.floor(Math.random()*choices.length)];
     return choice;
 }
 
 const playRound = (playerSelection, computerSelection) => {
     if (playerSelection === computerSelection) {
         return 'draw';
-    } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
+    } else if (playerSelection === 'rock' && computerSelection === 'scissors'
+    || playerSelection === 'scissors' && computerSelection === 'paper' 
+    || playerSelection === 'paper' && computerSelection === 'rock') {
         playerScore++;
         return 'player won';
-    } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
-        playerScore++;
-        return 'player won';
-    } else if (playerSelection === 'paper' && computerSelection === 'rock') {
-        playerScore++;
-        return 'player won';
-    } else if (computerSelection === 'rock' && playerSelection === 'scissors') {
+    } else if (computerSelection === 'rock' && playerSelection === 'scissors' 
+    || computerSelection === 'scissors' && playerSelection === 'paper' 
+    || computerSelection === 'paper' && playerSelection === 'rock') {
         computerScore++;
         return 'computer won';
-    } else if (computerSelection === 'scissors' && playerSelection === 'paper') {
-        computerScore++;
-        return 'computer won';
-    } else if (computerSelection === 'paper' && playerSelection === 'rock') {
-        computerScore++;
-        return 'computer won';
-    } else {
-        return 'unknown'
-    }
-
+    }else{
+        return `error: ${playerSelection}, ${computerSelection}`
+    }          
 }
 
-const game = () => {
-    for (let i = 0; i < 5; i++) {
-        let computerSelection = getComputerChoice();
-        let playerSelection = prompt('rock, paper or scissors ?')
-        console.log(playRound(playerSelection, computerSelection))
-        console.log(`Player: ${playerScore}`)
-        console.log(`Computer: ${computerScore}`)
-    }
+const playerScoreDiv = document.querySelector('.playerScore');
+const scoreDiv = document.querySelector('.score');
+const computerScoreDiv = document.querySelector('.computerScore');
 
-    if (playerScore === computerScore){
-        console.log('Draw')
-    }else if (playerScore > computerScore){
-        console.log('Player is the Winner')
-    }else if (computerScore > playerScore){
-        console.log('Computer is the Winner')
-    }
+const display = (score) => {
+    playerScoreDiv.textContent = `${playerScore}`;
+    scoreDiv.textContent = score;
+    computerScoreDiv.textContent = `${computerScore}`;
+}
 
+const buttons = document.querySelectorAll('button');
+
+const game = () => {  
+    buttons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            if (playerScore === 5 || computerScore === 5) return;
+
+            let score = playRound(e.target.className, getComputerChoice());
+            if (playerScore !== 5 || computerScore !== 5) display(score);
+
+            if (playerScore === 5 || computerScore === 5){
+                if (playerScore > computerScore){
+                    scoreDiv.textContent = 'Player is the Winner';
+                }else if (computerScore > playerScore){
+                    scoreDiv.textContent = 'Computer is the Winner';
+                }
+            }
+        });
+    });
 }
 
 game();
