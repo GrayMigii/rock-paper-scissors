@@ -5,11 +5,11 @@ body {
     flex-direction: column;
     background-image: url('./img/wp3102516.webp');
     background-size: 100vw 100vh;
-    background-repeat: no-repeat;
-    gap: 75px;
+    gap: 12vh;
 }
 
 h1 {
+    margin-top: 5%;
     color: rgb(216, 69, 155);
 }
 
@@ -18,8 +18,7 @@ h1 {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 30px;
-    font-size: 18px;
+    font-size: 2.5vh;
     font-weight: bold;
 }
 
@@ -27,6 +26,8 @@ h1 {
     display: flex;
     justify-content: center;
     gap: 30px;
+    width: 75%;
+    margin: 0 auto;
 }
 
 .playerScore-container, .computerScore-container, .score-container{
@@ -34,17 +35,25 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 2vh;
 }
 
 .container{
-    width: 500px;
-    height: 300px;
+    width: 45%;
+    padding: 3%;
     display: flex;
     flex-direction: column;
-    gap: 50px;
     background-color: rgba(94, 217, 255, 0.493);
-    justify-content: center;
     border-radius: 5px;
-    
+    gap: 10vh;
+}
+
+button {
+    padding: 2%;
+    border: 2px solid rgb(216, 69, 155);
+    border-radius: 4px;
+    background-color: rgb(46, 46, 177);
+    color: rgb(216, 69, 155);
+    font-weight: bold;
+    flex: 1 1 0%;
 }
