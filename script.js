@@ -37,12 +37,13 @@ const display = (score) => {
 
 const buttons = document.querySelectorAll('button');
 
-const game = () => {  
+const game = () => { 
     buttons.forEach(button => {
         button.addEventListener('click', (e) => {
             if (playerScore === 5 || computerScore === 5) return;
-
-            let score = playRound(e.target.className, getComputerChoice());
+            let computersChoice = getComputerChoice();
+            let playersChoice = e.target.className ;
+            let score = playRound(playersChoice ,computersChoice);
             if (playerScore !== 5 || computerScore !== 5) display(score);
 
             if (playerScore === 5 || computerScore === 5){
