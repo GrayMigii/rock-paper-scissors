@@ -35,14 +35,59 @@ const display = (score) => {
     computerScoreDiv.textContent = `${computerScore}`;
 }
 
+const playerIcon = document.querySelector('.player-canvas > i');
+const computerIcon = document.querySelector('.computer-canvas > i');
+
+const playerText = document.querySelector('.player-canvas > p');
+const computerText = document.querySelector('.computer-canvas > p');
+
+const decideCanvasContent = (computersChoice, playersChoice) => {
+    let computerIconClassName, playerIconClassName;
+
+    switch (computersChoice) {
+        case 'rock':
+            computerIconClassName = 'fa-hand-back-fist';
+            break;
+        case 'scissors':
+            computerIconClassName = 'fa-hand-scissors';
+            break;
+        case 'paper':
+            computerIconClassName = 'fa-hand';
+            break;
+    }
+
+    switch (playersChoice) {
+        case 'rock':
+            playerIconClassName = 'fa-hand-back-fist';
+            break;
+        case 'scissors':
+            playerIconClassName = 'fa-hand-scissors';
+            break;
+        case 'paper':
+            playerIconClassName = 'fa-hand';
+            break;
+    }
+
+    playerIcon.classList.remove(playerIcon.classList[playerIcon.classList.length - 1 ]);
+    playerIcon.classList.add(playerIconClassName);
+
+    computerIcon.classList.remove(computerIcon.classList[computerIcon.classList.length - 1 ]);
+    computerIcon.classList.add(computerIconClassName);
+
+    playerText.textContent = playersChoice; 
+    computerText.textContent = computersChoice;
+}
+
 const buttons = document.querySelectorAll('button');
 
-const game = () => {  
+const game = () => { 
     buttons.forEach(button => {
         button.addEventListener('click', (e) => {
             if (playerScore === 5 || computerScore === 5) return;
-
-            let score = playRound(e.target.className, getComputerChoice());
+            let computersChoice = getComputerChoice();
+            let playersChoice = e.target.className ;
+            decideCanvasContent(computersChoice, playersChoice);
+            let score = playRound(playersChoice ,computersChoice);
             if (playerScore !== 5 || computerScore !== 5) display(score);
 
             if (playerScore === 5 || computerScore === 5){

@@ -20,6 +20,7 @@ h1 {
     align-items: center;
     font-size: 2.5vh;
     font-weight: bold;
+    margin: 0px 50px;
 }
 
 .button-container{
@@ -45,7 +46,7 @@ h1 {
     flex-direction: column;
     background-color: rgba(94, 217, 255, 0.493);
     border-radius: 5px;
-    gap: 10vh;
+    gap: 30px;
 }
 
 button {
@@ -56,4 +57,35 @@ button {
     color: rgb(216, 69, 155);
     font-weight: bold;
     flex: 1 1 0%;
+}
+
+.canvas-container {
+    display: flex;
+    height: 150px;
+    justify-content: space-around;
+    gap: 125px;
+    padding: 0px 50px;
+} 
+
+.player-canvas, .computer-canvas {
+    display: flex;
+    flex: 1 0 0%;
+    background-color: rgba(46, 46, 177, 0.8);
+    border: 2px solid rgb(216, 69, 155);
+    border-radius: 4px;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.icon {
+    color: white;
+    margin-top: 25px ;
+}
+
+.text {
+    color: rgb(216, 69, 155);
+    margin: 10px 0px;
+    font-weight: bold;
+    font-size: 22px;
 }
